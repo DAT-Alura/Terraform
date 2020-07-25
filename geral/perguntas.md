@@ -294,3 +294,34 @@ output "nome" {
 ```
 
 > Alternativa correta! Utilizamos um nome para referência e no campo valor, a referência do recurso.
+
+## Aula 7
+
+1 - Sobre o recurso de administração remota, podemos afirmar que:
+
+- __Armazena os states remotamente__
+
+> Alternativa correta! Sim, esta é a principal vantagem de utilizar o backend remoto, o que permite inclusive a administração da infraestrutura por mais de uma pessoa.
+
+- __Necessita de configurações adicionais__
+
+> Alternativa correta! É necessário criar alguns arquivos adicionais para utilizar o backend remoto.
+
+- É o backend default do Terraform
+
+2 - O arquivo terraform.rc tem os seguintes requisitos:
+
+- __Armazena as credenciais de acesso__
+
+> Alternativa correta! Nele, deve estar contido o token de acesso:
+>
+> ``` tf
+> credentials "app.terraform.io" {
+>     token = "xxxxxx.atlasv1.zzzzzzzzzzzzz"
+> }
+> ```
+
+- Armazena as configurações do backend remoto
+- __Fica localizado no diretório $HOME do usuário__
+
+> Alternativa correta! O arquivo terraform.rc precisa estar localizado no $HOME do usuário.
