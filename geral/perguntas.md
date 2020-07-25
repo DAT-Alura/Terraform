@@ -269,3 +269,28 @@ resource "aws_instance" "teste" {
 ```
 
 > Alternativa correta! Utilizamos a referência var. para referenciar o recursos.
+
+## Aula 6
+
+1 - Para remover recursos da nossa infraestrutura, temos a(s) seguinte(s) opção(ões):
+
+- __Executando o comando terraform destroy ou excluindo diretamente os recursos no arquivo de configuração e rodando o apply__
+
+> Alternativa correta! Exatamente, tanto removendo as configurações dos recursos no arquivo de configuração, como também utilizando o comando terraform destroy.
+
+- Executando o comando terraform destroy
+- Excluir diretamente os recursos no arquivo de configuração e rodando o apply
+
+2 - Dentre as definições abaixo, sobre o uso dos outputs, qual está correta?
+
+- São atualizados somente através do comando terraform refresh
+- Obrigatoriamente devem ser declarados no arquivo out.tf
+- __São declaradas com a sintaxe:__
+
+``` tf
+output "nome" {
+    value = "${referência}"
+}
+```
+
+> Alternativa correta! Utilizamos um nome para referência e no campo valor, a referência do recurso.
