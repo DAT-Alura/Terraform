@@ -202,3 +202,70 @@ resource "aws_dynamodb_table" "dynamodb-homologacao" {
     ...
 }
 ```
+
+## Aula 5
+
+1 - No código abaixo foi criada uma variável associada a várias imagens (amis):
+
+``` tf
+variable "amis" {
+    type = "XXXXX"
+
+    default = {
+        "us-east-1" = "ami-026c8acd92718196b"
+        "us-east-2" = "ami-0d8f6eb4f641ef691"
+    }
+}
+```
+
+Qual o tipo correto de variável que deverá ser utilizado?
+
+- string
+- list
+- __map__
+
+> Alternativa correta! O tipo map utiliza { } em sua declaração e contém chaves e valores.
+
+2 - Utilizando como referência a variável amis:
+
+``` tf
+variable "amis" {
+    type = "map"
+
+    default = {
+        "us-east-1" = "ami-026c8acd92718196b"
+        "us-east-2" = "ami-0d8f6eb4f641ef691"
+    }
+}
+```
+
+Como deverá ser feito o apontamento dentro do recurso aws_instance?
+
+- A
+
+``` tf
+resource "aws_instance" "teste" {
+    ami = "${amis["us-east-1"]}"
+    ...
+}
+```
+
+- B
+
+``` tf
+resource "aws_instance" "teste" {
+    ami = “${"us-east-1"}"
+    ...
+}
+```
+
+- __C__
+
+``` tf
+resource "aws_instance" "teste" {
+    ami = "${var.amis["us-east-1"]}"
+    ...
+}
+```
+
+> Alternativa correta! Utilizamos a referência var. para referenciar o recursos.
