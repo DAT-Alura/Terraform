@@ -114,3 +114,91 @@ Como podemos utilizar a referência do security em nossa nova instância?
 
 - Criar os recursos sequencialmente, no arquivo de configuração
 - Criar um arquivo depends.tf
+
+## Aula 4
+
+1 - Uma característica do Terraform é o gerenciamento das configurações, que devem atender aos seguintes requisitos:
+
+- __Podem ser divididas em vários arquivos__
+
+> Alternativa correta! Sim, a configuração pode ser "quebrada" em mais de um arquivo, desde que esteja na mesma estrutura de diretório.
+
+- Deve ter pelo menos um arquivo nomeado como main.tf
+- __Podem estar em um único arquivo__
+
+> Alternativa correta! O __Terraform__ permite que você concentre suas configurações em um único arquivo.
+
+2 - Como podemos utilizar múltiplas configurações em um mesmo provider ?
+
+- A
+
+``` tf
+provider "aws" {
+    region  = "us-east-1"
+}
+provider "aws2" {
+    region  = "us-east-2"
+}
+```
+
+- B
+
+Ambas as formas citadas são aceitas
+
+- __C__
+
+``` tf
+provider "aws" {
+    region  = "us-east-1"
+}
+provider "aws" {
+    alias = "us-east-2"
+    region  = "us-east-2"
+}
+```
+
+> Alternativa correta! Para um mesmo provedor, utilizamos o alias para referenciar os recursos.
+
+3 - Baseado na configuração abaixo:
+
+``` tf
+provider "aws" {
+    region  = "us-east-1"
+}
+
+provider "aws" {
+    alias = "us-east-2"
+    region  = "us-east-2"
+}
+```
+
+Como devemos configurar o recurso para utilizar a region us-east-2?
+
+- __A__
+
+``` tf
+resource "aws_dynamodb_table" "dynamodb-homologacao" {
+    provider = "aws.us-east-2"
+    ...
+}
+```
+
+> Alternativa correta! Sim, utilizamos a tag ```provider```, seguida do alias que desejamos utilizar.
+
+- B
+
+``` tf
+resource "aws_dynamodb_table" "dynamodb-homologacao" {
+    provider = "alias.aws.us-east-2"
+    ...
+}
+```
+
+- C
+
+``` tf
+resource "aws_dynamodb_table" "dynamodb-homologacao" {
+    provider = "alias.us-east-2"
+    ...
+}
+```
