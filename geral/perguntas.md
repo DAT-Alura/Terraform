@@ -83,3 +83,34 @@ egress {
 - __show__
 
 > Alternativa correta! O comando show lê o arquivo terraform.tfstate e exibe as informações associadas (IP, rede, etc).
+
+## Aula 3
+
+1 - Veja o exemplo abaixo:
+
+``` tf
+resource "aws_security_group" "https" {
+    arn                    = "arn:aws:ec2:us-east-1:23232323232:security-group/sg-0586e4defc54ed1af"
+    description            = "Allow TLS inbound traffic"
+    egress                 = []
+    id                     = "sg-0586e4defc54ed1af"
+}
+```
+
+Como podemos utilizar a referência do security em nossa nova instância?
+
+- __vpc_security_group_ids = ["${aws_security_group.https.id}"]__
+
+> Alternativa correta! Para utilizar a referência, é preciso especificar os recursos e seus respectivos atributos. No exemplo, o .id.
+
+- vpc_security_group_ids = ["${aws_security_group.https}"]
+- vpc_security_group_ids = ["$sg-0586e4defc54ed1af"]
+
+2 - Para utilizarmos as dependências entre os recursos, é necessário:
+
+- __Utilizar o argumento ```depends_on```__
+
+> Alternativa correta! Com o depends_on, é possível vincular recursos, desta forma a criação/exclusão de um implica respectivamente no outro.
+
+- Criar os recursos sequencialmente, no arquivo de configuração
+- Criar um arquivo depends.tf
