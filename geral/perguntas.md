@@ -30,3 +30,56 @@
 > Alternativa correta! Na primeira vez utilizamos o init, depois o plan na sequência (mostra todas as alterações, mas sem aplicá-las) e apply para efetivar as mudanças.
 
 - plan, init e apply
+
+## Aula 2
+
+1 - Como deve ser configurado o security group para permitir acesso HTTPS à aplicação?
+
+- __A__
+
+``` tf
+ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+}
+```
+
+> Alternativa correta! Não esqueça de incluir os ```CDIR_BLOCKS``` com os IPs permitidos.
+
+- B
+
+``` tf
+ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+}
+```
+
+- C
+
+``` tf
+egress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+}
+```
+
+2 - Na hora de utilizar os comandos plan ou apply, devemos considerar que:
+
+- __Podemos utilizar diretamente o apply sem o plan__
+
+> Alternativa correta! Sim, mesmo não sendo recomendável, o Terraform permite que você utilize diretamente o apply.
+
+- Uma boa prática seria utilizar o apply e depois o plan
+- O comando apply não funciona sem antes utilizar o plan
+
+3 - Qual comando podemos utilizar para visualizar informações, como IPs, redes, etc, alocados em nossa infraestrutura?
+
+- apply
+- plan
+- __show__
+
+> Alternativa correta! O comando show lê o arquivo terraform.tfstate e exibe as informações associadas (IP, rede, etc).
